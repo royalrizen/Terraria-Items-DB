@@ -63,8 +63,7 @@ Iron Pickaxe
 IronPickaxe
 5
 ```
-
-## API
+---
 
 ### Get by ID
 
@@ -180,10 +179,6 @@ The database contains properties including:
 - `ranged`
 - `magic`
 - `summon`
-- Equipment slots
-- Weapon properties
-- Tile properties
-- And many other Terraria item fields
 
 > [!IMPORTANT]
 > Item records are **sparse**. Fields containing default values may be omitted from individual records. Use the wrapper's properties or `item.get()` when accessing optional fields.
