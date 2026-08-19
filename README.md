@@ -39,7 +39,7 @@ The database currently corresponds to **Terraria 1.4.5.6**.
 Clone the repository:
 
 ```bash
-git clone https://github.com/royalrizen/terraria-items.git
+git clone https://github.com/royalrizen/Terraria-Items-DB.git
 cd terraria-items
 ```
 
