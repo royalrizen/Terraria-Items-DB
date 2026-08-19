@@ -1,4 +1,4 @@
-# Terraria Items
+# Terraria Items Database
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 ![GitHub Stars](https://badgen.net/github/stars/royalrizen/Terraria-Items-DB)
@@ -7,54 +7,37 @@
 ![GitHub Last Commit](https://badgen.net/github/last-commit/royalrizen/Terraria-Items-DB)
 ![GitHub Commits](https://badgen.net/github/commits/royalrizen/Terraria-Items-DB)
 
-A JSON database and Python wrapper for **Terraria item data**.
+A JSON database and Python wrapper for **Terraria item data**, currently based on **Terraria 1.4.5.6**.
 
-> [!NOTE]
-> This project is currently a work in progress.
-
-## What is this?
-
-This repository contains a structured JSON database of Terraria items, along with a small Python package for accessing the data easily.
-
-The database contains information such as:
-
-- Item ID
-- Display name
-- Internal name
-- Damage
-- Rarity
-- Value
-- Maximum stack size
-- Use time
-- Crafting information
-- Weapon types
-- Equipment slots
-- Tile information
-- And other item properties
-
-The database currently corresponds to **Terraria 1.4.5.6**.
+| Feature | Description |
+|---|---|
+| Item data | IDs, names, internal names, stats, values, etc. |
+| JSON database | Raw item data stored in `data/items.json` |
+| Item lookup | Find items by ID or internal name |
+| Search | Search by item name or internal name |
+| Properties | Access common fields directly or any raw field with `get()` |
+| Python API | Simple wrapper for working with the database |
 
 ## Installation
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/royalrizen/Terraria-Items-DB.git
-cd terraria-items
-```
-
-Install the Python package:
-
-```bash
+cd Terraria-Items-DB
 pip install -e .
 ```
 
-> [!TIP]
-> `-e` installs the package in editable mode. This is useful when working on the source code because changes are immediately available without reinstalling.
+> [!NOTE]
+> `-e` installs the package in editable mode, which is useful when developing or modifying the package.
+
+### Uninstall
+
+```bash
+pip uninstall terraria-items
+```
 
 ## Usage
 
-### Load the database
+### Create a database
 
 ```python
 from terraria_items import ItemDatabase
@@ -62,7 +45,9 @@ from terraria_items import ItemDatabase
 db = ItemDatabase("data/items.json")
 ```
 
-### Get an item by ID
+### Get an item
+
+By ID:
 
 ```python
 item = db[2]
@@ -71,14 +56,12 @@ print(item.name)
 print(item.internal_name)
 ```
 
-Output:
-
 ```text
 Dirt Block
 DirtBlock
 ```
 
-### Get an item by internal name
+By internal name:
 
 ```python
 item = db.get_by_name("IronPickaxe")
@@ -87,38 +70,28 @@ print(item.id)
 print(item.name)
 ```
 
-Output:
-
-```text
-1
-Iron Pickaxe
-```
-
-### Search for items
+### Search
 
 ```python
-results = db.search("pickaxe")
-
-for item in results:
+for item in db.search("pickaxe"):
     print(item.id, item.name)
 ```
 
-### Access item properties
+### Access properties
 
-Common properties can be accessed directly:
+Common properties are available directly:
 
 ```python
 item = db[1]
 
 print(item.name)
-print(item.internal_name)
-print(item.max_stack)
 print(item.damage)
 print(item.rarity)
 print(item.value)
+print(item.max_stack)
 ```
 
-For properties that aren't exposed directly by the wrapper, use `get()`:
+For other properties:
 
 ```python
 print(item.get("pick"))
@@ -126,13 +99,13 @@ print(item.get("useTime"))
 print(item.get("useAnimation"))
 ```
 
-You can also provide a default value:
+A default value can be provided:
 
 ```python
 print(item.get("unknownField", 0))
 ```
 
-### Iterate through all items
+### Iterate
 
 ```python
 for item in db:
@@ -141,15 +114,13 @@ for item in db:
 
 ## Database
 
-The raw database is located at:
+The raw database is stored at:
 
 ```text
 data/items.json
 ```
 
-Each numeric key represents a Terraria item ID.
-
-For example:
+Items are keyed by their numeric Terraria ID:
 
 ```json
 {
@@ -163,41 +134,26 @@ For example:
 ```
 
 > [!IMPORTANT]
-> The database uses **sparse item records**. Properties containing their default values may not be explicitly stored for every item. Use the wrapper's defaults or `item.get()` when accessing optional fields.
-
-
-### Uninstall
-
-```bash
-pip uninstall terraria-items
-```
+> Item records are **sparse**. Properties containing default values may be omitted. Use the wrapper's defaults or `item.get()` when accessing optional fields.
 
 ## Data Source
 
-The item data is generated from the Terraria Wiki's:
+Data is generated from the Terraria Wiki's `Module:Iteminfo/data` and stored locally as JSON.
 
-`Module:Iteminfo/data`
-
-The database was extracted from the Wiki's generated item information and stored locally as JSON.
+[Terraria Wiki](https://terraria.wiki.gg/)
 
 > [!WARNING]
-> This project is an unofficial community project and is **not affiliated with or endorsed by Re-Logic or Terraria**.
+> This is an unofficial community project and is **not affiliated with or endorsed by Re-Logic or Terraria**.
 
 ## Project Structure
 
 ```text
-terraria-items/
-├── src/
-│   └── terraria_items/
-│       ├── __init__.py
-│       └── database.py
-│
-├── data/
-│   └── items.json
-│
-├── examples/
-│   └── basic.py
-│
+Terraria-Items-DB/
+├── src/terraria_items/
+│   ├── __init__.py
+│   └── database.py
+├── data/items.json
+├── examples/basic.py
 ├── README.md
 ├── LICENSE
 └── pyproject.toml
@@ -205,25 +161,22 @@ terraria-items/
 
 ## Roadmap
 
-- [x] Extract Terraria item data
-- [x] Store item data as JSON
-- [x] Python database wrapper
-- [x] Item lookup by ID
-- [x] Item lookup by internal name
-- [x] Item searching
+- [x] Terraria item data extraction
+- [x] JSON database
+- [x] Python wrapper
+- [x] ID and internal-name lookup
+- [x] Item search
 - [x] Raw property access
 - [ ] Automatic database updater
-- [ ] Better item filtering
+- [ ] Advanced filtering
 - [ ] Typed item properties
 - [ ] PyPI release
-- [ ] Integration with a Terraria `.plr` library
+- [ ] Terraria `.plr` integration
 
 ## Credits
 
-- **Terraria Wiki** — source of the item data  
-  https://terraria.wiki.gg/ `Module:Iteminfo/data` (source database)
+**Terraria Wiki** — source of the item data.
 
 ## License
 
-This project is licensed under the MIT License.
-See [LICENSE](LICENSE) for more information.
+MIT License. See [LICENSE](LICENSE).
