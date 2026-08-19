@@ -1,8 +1,11 @@
 # Terraria Items
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![License](https://img.shields.io/github/license/royalrizen/terraria-items?style=flat)](https://github.com/royalrizen/Terraria-Items-DB/LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/royalrizen/terraria-items?style=flat&logo=github)](https://github.com/royalrizen/Terraria-Items-DB)
+![GitHub Stars](https://badgen.net/github/stars/royalrizen/Terraria-Items-DB)
+![GitHub Forks](https://badgen.net/github/forks/royalrizen/Terraria-Items-DB)
+![GitHub License](https://badgen.net/github/license/royalrizen/Terraria-Items-DB)
+![GitHub Last Commit](https://badgen.net/github/last-commit/royalrizen/Terraria-Items-DB)
+![GitHub Commits](https://badgen.net/github/commits/royalrizen/Terraria-Items-DB)
 
 A JSON database and Python wrapper for **Terraria item data**.
 
